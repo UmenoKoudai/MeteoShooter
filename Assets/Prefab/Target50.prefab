@@ -93,8 +93,8 @@ GameObject:
   - component: {fileID: 9081282441608609006}
   - component: {fileID: 9081282441608608978}
   m_Layer: 0
-  m_Name: Target10
-  m_TagString: Target
+  m_Name: Target50
+  m_TagString: target50
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

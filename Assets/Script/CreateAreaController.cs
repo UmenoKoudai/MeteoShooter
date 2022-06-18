@@ -22,7 +22,7 @@ public class CreateAreaController : MonoBehaviour
         _time += Time.deltaTime;
 
         float RandomX = Random.Range((-_bc.size.x)/2, (_bc.size.x)/2);
-        float RandomY = Random.Range((-_bc.size.y) / 2, (_bc.size.y) / 2);
+        float RandomY = Random.Range((-_bc.size.y)/2, (_bc.size.y)/2);
         int n = Random.Range(0, _item.Length);
 
         if(_time >= _interval)
