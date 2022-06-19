@@ -7,13 +7,11 @@ public class CreateAreaController : MonoBehaviour
     [SerializeField] GameObject[] _item;
     [SerializeField] float _interval;
     BoxCollider2D _bc;
-    Transform _tf;
     float _time;
     // Start is called before the first frame update
     void Start()
     {
         _bc = GetComponent<BoxCollider2D>();
-        _tf = GetComponent<Transform>();
     }
 
     // Update is called once per frameq 
