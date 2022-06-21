@@ -661,3 +661,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _HP: 5
   _Hpgauge: {fileID: 4562441987132655771}
+  _score: 5

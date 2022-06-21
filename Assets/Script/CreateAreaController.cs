@@ -5,7 +5,7 @@ using UnityEngine;
 public class CreateAreaController : MonoBehaviour
 {
     [SerializeField] GameObject[] _item;
-    [SerializeField] float _interval;
+    [SerializeField] public float _interval;
     BoxCollider2D _bc;
     float _time;
     // Start is called before the first frame update
@@ -25,7 +25,7 @@ public class CreateAreaController : MonoBehaviour
 
         if(_time >= _interval)
         {
-            GameObject _Item = Instantiate<GameObject>(_item[n]);
+            GameObject _Item = Instantiate(_item[n]);
             _Item.transform.position = new Vector2(RandomX + transform.position.x, RandomY + transform.position.y);
             _time = 0;
         }

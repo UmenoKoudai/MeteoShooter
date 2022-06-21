@@ -285,6 +285,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _HP: 2
   _Hpgauge: {fileID: 6815213748591087613}
+  _score: 2
 --- !u!1 &6223491590896267252
 GameObject:
   m_ObjectHideFlags: 0

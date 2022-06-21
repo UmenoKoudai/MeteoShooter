@@ -2,14 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PiayerController : MonoBehaviour
+public class PlayerController : MonoBehaviour
 {
     [SerializeField] int _movespeed;
     [SerializeField] BulletController _bulletPrefab;
     [SerializeField] Transform _muzzle;
-    [SerializeField] float _intarval;
+    [SerializeField] public float _intarval;
     [SerializeField] Transform _addmuzzle1;
     [SerializeField] Transform _addmuzzle2;
+    public Vector2 _move = default;
     int _bulletspeed = 15;
     public int _Power;
     float _time;
@@ -24,15 +25,16 @@ public class PiayerController : MonoBehaviour
     {
         _time += Time.deltaTime;
         Rigidbody2D _rb = GetComponent<Rigidbody2D>();
+        _rb.AddForce(_move * _movespeed, ForceMode2D.Force);
         var Bullet = _bulletPrefab.GetComponent<BulletController>();
         Bullet._movespeed = _bulletspeed;
         if (Input.GetKey(KeyCode.A))
         {
-            _rb.AddForce(Vector2.left * _movespeed, ForceMode2D.Force);
+            _move = Vector2.right;
         }
         if(Input.GetKey(KeyCode.D))
         {
-            _rb.AddForce(Vector2.right * _movespeed, ForceMode2D.Force);
+            _move = Vector2.left;
         }
         if(_Power <= 0 && _time >= _intarval && Input.GetButton("Fire1"))
         {
