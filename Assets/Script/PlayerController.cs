@@ -10,6 +10,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] public float _intarval;
     [SerializeField] Transform _addmuzzle1;
     [SerializeField] Transform _addmuzzle2;
+    [SerializeField] Transform m_crosshair;
     public Vector2 _move = default;
     int _bulletspeed = 15;
     public int _Power;
@@ -17,7 +18,7 @@ public class PlayerController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
@@ -28,15 +29,17 @@ public class PlayerController : MonoBehaviour
         _rb.AddForce(_move * _movespeed, ForceMode2D.Force);
         var Bullet = _bulletPrefab.GetComponent<BulletController>();
         Bullet._movespeed = _bulletspeed;
-        if (Input.GetKey(KeyCode.A))
-        {
-            _move = Vector2.right;
-        }
-        if(Input.GetKey(KeyCode.D))
-        {
-            _move = Vector2.left;
-        }
-        if(_Power <= 0 && _time >= _intarval && Input.GetButton("Fire1"))
+        Vector2 dir = m_crosshair.position - transform.position;
+        transform.up = dir;
+        //if(Input.GetKeyDown(KeyCode.A))
+        //{
+        //    _move = Vector2.left;
+        //}
+        //if (Input.GetKeyDown(KeyCode.D))
+        //{
+        //    _move = Vector2.right;
+        //}
+        if (_Power <= 0 && _time >= _intarval && Input.GetButton("Fire1"))
         {
             Instantiate(_bulletPrefab, _muzzle.position, transform.rotation);
             _time = 0;
@@ -85,9 +88,10 @@ public class PlayerController : MonoBehaviour
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if(collision.gameObject.tag == "Power")
+        if (collision.gameObject.tag == "Power")
         {
-            _Power++;
+            _Power += 1;
+            Debug.Log("パワーアップ");
         }
     }
 }

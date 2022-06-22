@@ -15,43 +15,60 @@ public class GameManager : MonoBehaviour
     [SerializeField] GameObject _GameClear;
     GameObject _pc;
     GameObject _ca;
+    GameObject _p;
     public BoxCollider2D col;
     float _timer;
-    int _hp;
+    int _hp = 100;
     public static int m_score;
     int _hiscore;
+    public int _Power;
+    bool _end = true;
     // Start is called before the first frame update
     void Start()
     {
         _pc = GameObject.Find("Canon");
         _ca = GameObject.Find("Create area");
+        _p = GameObject.Find("Canon");
     }
   
     // Update is called once per frame
     void Update()
     {
-        _timer += Time.deltaTime;
-        float Timer = 60-_timer;
-        _tt.text = $"{Timer.ToString("f2")}";
-        _cs.text = $"{m_score.ToString("f2")}";
         var PC = _pc.GetComponent<PlayerController>();
         var CA = _ca.GetComponent<CreateAreaController>();
-        if(Timer <= 0)
+        var P = _p.GetComponent<PlayerController>();
+        if(_end)
         {
-            _GameClear.gameObject.SetActive(true);
-            PC._intarval = 999999;
-            CA._interval = 999999;
-            PC._move = Vector2.zero;
-            col.enabled = false;
+            _timer += Time.deltaTime;
+            float Timer = 60 - _timer;
+            _tt.text = $"{Timer.ToString("f2")}";
+            _cs.text = $"スコア:{m_score.ToString("f2")}";
+            _bs.text = $"ハイスコア:{_hiscore.ToString("f2")}";
+            P._Power = _Power;
+            if (Timer <= 0)
+            {
+                _GameClear.gameObject.SetActive(true);
+                PC._intarval = 999999;
+                CA._interval = 999999;
+                PC._move = Vector2.zero;
+                col.enabled = false;
+                _end = false;
+            }
+            if (_hp <= 0)
+            {
+                _GameOver.gameObject.SetActive(true);
+                PC._intarval = 999999;
+                CA._interval = 999999;
+                PC._move = Vector2.zero;
+                col.enabled = false;
+                _end = false;
+            }
+            if (_hiscore <= m_score)
+            {
+                _hiscore = m_score;
+            }
         }
-        if(_hp <= 0)
-        {
-            _GameOver.gameObject.SetActive(true);
-            PC._intarval = 999999;
-            CA._interval = 999999;
-            PC._move = Vector2.zero;
-            col.enabled = false;
-        }
+        
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -80,6 +97,11 @@ public class GameManager : MonoBehaviour
             _hp -= 50;
             DamageGauge(0.5f);
         }
+        if (collision.gameObject.tag == "Power")
+        {
+            _Power++;
+            Debug.Log("パワーアップ");
+        }
     }
     void DamageGauge(float dm)
     {
@@ -89,5 +111,9 @@ public class GameManager : MonoBehaviour
     {
         m_score += _score;
         _sc.text = $"{m_score.ToString("000")}g";
+    }
+    public void Reset()
+    {
+        m_score = 0;
     }
 }

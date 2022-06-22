@@ -22,9 +22,4 @@ public class LoadScene : MonoBehaviour
     {
         SceneManager.LoadScene(_scnename);
     }
-
-    public void Reset()
-    {
-        m_score = 0;
-    }
 }
