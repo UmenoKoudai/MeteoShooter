@@ -193,8 +193,8 @@ GameObject:
   - component: {fileID: 5621763883386423108}
   - component: {fileID: 5373725931270085773}
   m_Layer: 0
-  m_Name: Target1
-  m_TagString: target1
+  m_Name: Target6
+  m_TagString: target6
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -370,6 +370,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4aad026f2a3340e4eaf5772a21607ec2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _HP: 1
+  _HP: 6
   _Hpgauge: {fileID: 6024900949482129729}
-  _score: 1
+  _score: 6

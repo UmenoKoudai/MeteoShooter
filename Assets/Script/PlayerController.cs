@@ -11,6 +11,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] Transform _addmuzzle1;
     [SerializeField] Transform _addmuzzle2;
     [SerializeField] Transform m_crosshair;
+    [SerializeField] float _rv;
     public Vector2 _move = default;
     int _bulletspeed = 15;
     public int _Power;
@@ -31,13 +32,17 @@ public class PlayerController : MonoBehaviour
         Bullet._movespeed = _bulletspeed;
         Vector2 dir = m_crosshair.position - transform.position;
         transform.up = dir;
-        //if(Input.GetKeyDown(KeyCode.A))
+        //if (Input.GetKeyDown(KeyCode.A))
         //{
         //    _move = Vector2.left;
         //}
         //if (Input.GetKeyDown(KeyCode.D))
         //{
         //    _move = Vector2.right;
+        //}
+        //if(_rb.velocity.magnitude >= _rv)
+        //{
+        //    _rb.velocity = Vector3.zero;
         //}
         if (_Power <= 0 && _time >= _intarval && Input.GetButton("Fire1"))
         {

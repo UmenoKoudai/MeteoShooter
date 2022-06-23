@@ -93,8 +93,8 @@ GameObject:
   - component: {fileID: 9081282441608609006}
   - component: {fileID: 9081282441608608978}
   m_Layer: 0
-  m_Name: Target50
-  m_TagString: target50
+  m_Name: Target70
+  m_TagString: target70
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -214,9 +214,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4aad026f2a3340e4eaf5772a21607ec2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _HP: 50
+  _HP: 70
   _Hpgauge: {fileID: 9081282441310666957}
-  _score: 50
+  _score: 70
 --- !u!1 &9081282442947202259
 GameObject:
   m_ObjectHideFlags: 0

@@ -5794,6 +5794,7 @@ GameObject:
   - component: {fileID: 407949305}
   - component: {fileID: 407949310}
   - component: {fileID: 407949309}
+  - component: {fileID: 407949311}
   - component: {fileID: 407949308}
   m_Layer: 3
   m_Name: Canon
@@ -5814,13 +5815,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4475b62d9a06ad84a8279d7efd0e43b0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _movespeed: 0
+  _movespeed: 5
   _bulletPrefab: {fileID: 8738461567635920830, guid: 148ededceff4738409639a5b37df9f17, type: 3}
   _muzzle: {fileID: 1564351996}
   _intarval: 0.3
   _addmuzzle1: {fileID: 21128421}
   _addmuzzle2: {fileID: 1304999760}
   m_crosshair: {fileID: 2027259662}
+  _rv: 0.1
   _move: {x: 0, y: 0}
   _Power: 0
 --- !u!212 &407949306
@@ -5882,7 +5884,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 407949304}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -17.79, z: 0}
+  m_LocalPosition: {x: 0, y: -17.992, z: 0}
   m_LocalScale: {x: 1, y: 2.5654, z: 1}
   m_Children:
   - {fileID: 2110500660}
@@ -5962,6 +5964,32 @@ CapsuleCollider2D:
   m_Offset: {x: 0, y: -0.07}
   m_Size: {x: 0.99, y: 1.21}
   m_Direction: 0
+--- !u!61 &407949311
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 407949304}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0.69}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1, y: 1}
+    newSize: {x: 1, y: 1}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1.09, y: 0.31}
+  m_EdgeRadius: 0
 --- !u!1 &442439485
 GameObject:
   m_ObjectHideFlags: 0

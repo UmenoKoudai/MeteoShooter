@@ -13,6 +13,11 @@ TagManager:
   - target2
   - target5
   - target50
+  - target6
+  - target7
+  - target10
+  - target12
+  - target70
   layers:
   - Default
   - TransparentFX
