@@ -286,6 +286,8 @@ MonoBehaviour:
   _HP: 7
   _Hpgauge: {fileID: 6815213748591087613}
   _score: 7
+  _particle: {fileID: 2663380883615308797, guid: 40ccb06715bf04c428f1536e8e7d8662, type: 3}
+  _audio: {fileID: 8248675614028673907, guid: bfffda2d1ea591a4a9d2068438ad6a93, type: 3}
 --- !u!1 &6223491590896267252
 GameObject:
   m_ObjectHideFlags: 0

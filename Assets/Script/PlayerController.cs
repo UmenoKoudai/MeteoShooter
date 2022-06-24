@@ -11,7 +11,6 @@ public class PlayerController : MonoBehaviour
     [SerializeField] Transform _addmuzzle1;
     [SerializeField] Transform _addmuzzle2;
     [SerializeField] Transform m_crosshair;
-    [SerializeField] float _rv;
     public Vector2 _move = default;
     int _bulletspeed = 15;
     public int _Power;
@@ -32,6 +31,7 @@ public class PlayerController : MonoBehaviour
         Bullet._movespeed = _bulletspeed;
         Vector2 dir = m_crosshair.position - transform.position;
         transform.up = dir;
+        AudioSource Shot = GetComponent<AudioSource>();
         //if (Input.GetKeyDown(KeyCode.A))
         //{
         //    _move = Vector2.left;
@@ -47,48 +47,39 @@ public class PlayerController : MonoBehaviour
         if (_Power <= 0 && _time >= _intarval && Input.GetButton("Fire1"))
         {
             Instantiate(_bulletPrefab, _muzzle.position, transform.rotation);
+            Shot.Play();
             _time = 0;
         }
-        else if(_Power == 1 && _time >= _intarval && Input.GetButton("Fire1"))
+        
+        else if (_Power == 1 && _time >= _intarval && Input.GetButton("Fire1"))
         {
-            Instantiate(_bulletPrefab, _muzzle.position, transform.rotation);
+            Instantiate(_bulletPrefab, _addmuzzle1.position, transform.rotation);
+            Instantiate(_bulletPrefab, _addmuzzle2.position, transform.rotation);
             _time = 0;
-            _bulletspeed = 20;
-            _intarval = .1f;
+            _bulletspeed = 15;
+            _intarval = .2f;
+            Shot.Play();
         }
+        
         else if (_Power == 2 && _time >= _intarval && Input.GetButton("Fire1"))
         {
             Instantiate(_bulletPrefab, _addmuzzle1.position, transform.rotation);
             Instantiate(_bulletPrefab, _addmuzzle2.position, transform.rotation);
+            Instantiate(_bulletPrefab, _muzzle.position, transform.rotation);
             _time = 0;
             _bulletspeed = 15;
-            _intarval = .3f;
+            _intarval = .2f;
+            Shot.Play();
         }
-        else if (_Power == 3 && _time >= _intarval && Input.GetButton("Fire1"))
+        else if (_Power >= 3 && _time >= _intarval && Input.GetButton("Fire1"))
         {
             Instantiate(_bulletPrefab, _addmuzzle1.position, transform.rotation);
             Instantiate(_bulletPrefab, _addmuzzle2.position, transform.rotation);
+            Instantiate(_bulletPrefab, _muzzle.position, transform.rotation);
             _time = 0;
             _bulletspeed = 20;
             _intarval = .1f;
-        }
-        else if (_Power == 4 && _time >= _intarval && Input.GetButton("Fire1"))
-        {
-            Instantiate(_bulletPrefab, _addmuzzle1.position, transform.rotation);
-            Instantiate(_bulletPrefab, _addmuzzle2.position, transform.rotation);
-            Instantiate(_bulletPrefab, _muzzle.position, transform.rotation);
-            _time = 0;
-            _bulletspeed = 15;
-            _intarval = .3f;
-        }
-        else if (_Power >= 5 && _time >= _intarval && Input.GetButton("Fire1"))
-        {
-            Instantiate(_bulletPrefab, _addmuzzle1.position, transform.rotation);
-            Instantiate(_bulletPrefab, _addmuzzle2.position, transform.rotation);
-            Instantiate(_bulletPrefab, _muzzle.position, transform.rotation);
-            _time = 0;
-            _bulletspeed = 50;
-            _intarval = .01f;
+            Shot.Play();
         }
     }
     private void OnCollisionEnter2D(Collision2D collision)

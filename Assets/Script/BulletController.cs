@@ -18,7 +18,7 @@ public class BulletController : MonoBehaviour
     {
         _timer += Time.deltaTime;
 
-        if (transform.position.y >= 12f || transform.position.y <= -20f || _timer >= 5f)
+        if (transform.position.y >= 18f || transform.position.y <= -20f || _timer >= 5f)
         {
             Destroy(gameObject);
         }

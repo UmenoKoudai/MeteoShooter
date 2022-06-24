@@ -42,8 +42,8 @@ public class GameManager : MonoBehaviour
             _timer += Time.deltaTime;
             float Timer = 60 - _timer;
             _tt.text = $"{Timer.ToString("f2")}";
-            _cs.text = $"スコア:{m_score.ToString("f2")}";
-            _bs.text = $"ハイスコア:{_hiscore.ToString("f2")}";
+            _cs.text = $"スコア:{m_score.ToString("000")}";
+            _bs.text = $"ハイスコア:{_hiscore.ToString("000")}";
             P._Power = _Power;
             if (Timer <= 0)
             {

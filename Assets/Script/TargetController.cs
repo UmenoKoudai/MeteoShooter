@@ -8,6 +8,8 @@ public class TargetController : MonoBehaviour
     [SerializeField] int _HP;
     [SerializeField] Text _Hpgauge;
     [SerializeField] int _score;
+    [SerializeField] GameObject _particle;
+    [SerializeField] GameObject _audio;
     GameObject _gm;
     // Start is called before the first frame update
     void Start()
@@ -21,6 +23,8 @@ public class TargetController : MonoBehaviour
         _Hpgauge.text = $"{_HP}";
         if (_HP <= 0)
         {
+            Instantiate(_particle, transform.position, transform.rotation);
+            Instantiate(_audio, transform.position, transform.rotation);
             _gm.GetComponent<GameManager>().AddScore(_score);
             Destroy(gameObject);
         }
