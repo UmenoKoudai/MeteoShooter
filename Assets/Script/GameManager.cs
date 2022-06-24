@@ -3,9 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using System.IO;
 
 public class GameManager : MonoBehaviour
 {
+    [System.Serializable]
+    private struct scoredata
+    {
+        public int score;
+    }
     [SerializeField] Image _garbage;
     [SerializeField] Text _sc;
     [SerializeField] Text _tt;
@@ -16,6 +22,7 @@ public class GameManager : MonoBehaviour
     GameObject _pc;
     GameObject _ca;
     GameObject _p;
+    private string _dataPath;
     public BoxCollider2D col;
     float _timer;
     int _hp = 100;
@@ -39,6 +46,8 @@ public class GameManager : MonoBehaviour
         var P = _p.GetComponent<PlayerController>();
         if(_end)
         {
+            OnLoad();
+            Debug.Log(_hiscore);
             _timer += Time.deltaTime;
             float Timer = 60 - _timer;
             _tt.text = $"{Timer.ToString("f2")}";
@@ -66,6 +75,7 @@ public class GameManager : MonoBehaviour
             if (_hiscore <= m_score)
             {
                 _hiscore = m_score;
+                OnSave();
             }
         }
         
@@ -145,5 +155,26 @@ public class GameManager : MonoBehaviour
     public void Reset()
     {
         m_score = 0;
+    }
+    private void OnSave()
+    {
+        var sco = new scoredata
+        {
+            score = _hiscore
+        };
+
+        var json = JsonUtility.ToJson(sco, false);
+
+        File.WriteAllText(_dataPath, json);
+    }
+    private void OnLoad()
+    {
+        if (!File.Exists(_dataPath)) return;
+
+        var json = File.ReadAllText(_dataPath);
+
+        var sco = JsonUtility.FromJson<scoredata>(json);
+
+        _hiscore = sco;
     }
 }
