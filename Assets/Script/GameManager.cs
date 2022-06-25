@@ -39,6 +39,9 @@ public class GameManager : MonoBehaviour
     public void Awake()
     {
         m_score = 0;
+        scoredata sco2 = OnLoad();
+        _hiscore = sco2.score;
+        Debug.Log(sco2.score);
     }
 
     void Start()
@@ -58,7 +61,7 @@ public class GameManager : MonoBehaviour
         if (_end)
         {
             _timer += Time.deltaTime;
-            float Timer = 20 - _timer;
+            float Timer = 60 - _timer;
             _tt.text = $"{Timer.ToString("f2")}";
             _cs.text = $"スコア:{m_score.ToString("000")}";
             _bs.text = $"ハイスコア:{_hiscore.ToString("000")}";
@@ -84,15 +87,12 @@ public class GameManager : MonoBehaviour
                 PC._move = Vector2.zero;
                 col.enabled = false;
                 _end = false;
-                scoredata sco2 = OnLoad();
 
             }
             if (_hiscore <= m_score)
             {
                 _hiscore = m_score;
                 OnSave(sco);
-
-
             }
         }
         
@@ -179,6 +179,8 @@ public class GameManager : MonoBehaviour
 
         string json = JsonUtility.ToJson(sco);
         //Debug.Log(json);
+
+        Debug.Log(json);
 
         writer = new StreamWriter(Application.dataPath + "/savedata.json");
 
