@@ -1085,7 +1085,6 @@ GameObject:
   - component: {fileID: 433240865}
   - component: {fileID: 433240864}
   - component: {fileID: 433240863}
-  - component: {fileID: 433240862}
   m_Layer: 5
   m_Name: Title
   m_TagString: Untagged
@@ -1113,27 +1112,6 @@ RectTransform:
   m_AnchoredPosition: {x: 1.2, y: -54}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &433240862
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 433240860}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4b9097edee952c54c9933c329feac429, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _garbage: {fileID: 0}
-  _sc: {fileID: 0}
-  _tt: {fileID: 0}
-  _cs: {fileID: 0}
-  _bs: {fileID: 0}
-  _GameOver: {fileID: 0}
-  _GameClear: {fileID: 0}
-  col: {fileID: 0}
-  _Power: 0
 --- !u!114 &433240863
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1143,12 +1121,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 433240860}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0429f3301ef671b4d8c798fddafe4503, type: 3}
+  m_Script: {fileID: 11500000, guid: f1ae7b9770c9d8147a303212e202a0ef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _StageSelect: {fileID: 0}
-  _Help: {fileID: 0}
-  _title: {fileID: 0}
 --- !u!114 &433240864
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1194,8 +1169,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 433240863}
-        m_TargetAssemblyTypeName: LoadScene, Assembly-CSharp
-        m_MethodName: MoveScene
+        m_TargetAssemblyTypeName: MoveScene, Assembly-CSharp
+        m_MethodName: LoadScene
         m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1203,18 +1178,6 @@ MonoBehaviour:
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: Title
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 433240862}
-        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
-        m_MethodName: Reset
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &433240865
@@ -1848,12 +1811,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 929527691}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0429f3301ef671b4d8c798fddafe4503, type: 3}
+  m_Script: {fileID: 11500000, guid: f1ae7b9770c9d8147a303212e202a0ef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _StageSelect: {fileID: 0}
-  _Help: {fileID: 0}
-  _title: {fileID: 0}
 --- !u!114 &929527694
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1899,8 +1859,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 929527693}
-        m_TargetAssemblyTypeName: LoadScene, Assembly-CSharp
-        m_MethodName: MoveScene
+        m_TargetAssemblyTypeName: MoveScene, Assembly-CSharp
+        m_MethodName: LoadScene
         m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2836,7 +2796,6 @@ GameObject:
   - component: {fileID: 1157740181}
   - component: {fileID: 1157740180}
   - component: {fileID: 1157740179}
-  - component: {fileID: 1157740178}
   m_Layer: 5
   m_Name: Title
   m_TagString: Untagged
@@ -2864,27 +2823,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: -854}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1157740178
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1157740176}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4b9097edee952c54c9933c329feac429, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _garbage: {fileID: 0}
-  _sc: {fileID: 0}
-  _tt: {fileID: 0}
-  _cs: {fileID: 0}
-  _bs: {fileID: 0}
-  _GameOver: {fileID: 0}
-  _GameClear: {fileID: 0}
-  col: {fileID: 0}
-  _Power: 0
 --- !u!114 &1157740179
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2894,12 +2832,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 1157740176}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0429f3301ef671b4d8c798fddafe4503, type: 3}
+  m_Script: {fileID: 11500000, guid: f1ae7b9770c9d8147a303212e202a0ef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _StageSelect: {fileID: 0}
-  _Help: {fileID: 0}
-  _title: {fileID: 0}
 --- !u!114 &1157740180
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2944,21 +2879,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1157740178}
-        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
-        m_MethodName: Reset
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
       - m_Target: {fileID: 1157740179}
-        m_TargetAssemblyTypeName: LoadScene, Assembly-CSharp
-        m_MethodName: MoveScene
+        m_TargetAssemblyTypeName: MoveScene, Assembly-CSharp
+        m_MethodName: LoadScene
         m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

@@ -8,10 +8,16 @@ using System.IO;
 public class GameManager : MonoBehaviour
 {
     [System.Serializable]
-    private struct scoredata
+    public class scoredata
     {
         public int score;
     }
+
+    
+    //private struct scoredata
+    //{
+    //    public int score;
+    //}
     [SerializeField] Image _garbage;
     [SerializeField] Text _sc;
     [SerializeField] Text _tt;
@@ -22,7 +28,6 @@ public class GameManager : MonoBehaviour
     GameObject _pc;
     GameObject _ca;
     GameObject _p;
-    private string _dataPath;
     public BoxCollider2D col;
     float _timer;
     int _hp = 100;
@@ -31,6 +36,11 @@ public class GameManager : MonoBehaviour
     public int _Power;
     bool _end = true;
     // Start is called before the first frame update
+    public void Awake()
+    {
+        m_score = 0;
+    }
+
     void Start()
     {
         _pc = GameObject.Find("Canon");
@@ -44,16 +54,19 @@ public class GameManager : MonoBehaviour
         var PC = _pc.GetComponent<PlayerController>();
         var CA = _ca.GetComponent<CreateAreaController>();
         var P = _p.GetComponent<PlayerController>();
-        if(_end)
+        
+        if (_end)
         {
-            OnLoad();
-            Debug.Log(_hiscore);
             _timer += Time.deltaTime;
-            float Timer = 60 - _timer;
+            float Timer = 20 - _timer;
             _tt.text = $"{Timer.ToString("f2")}";
             _cs.text = $"スコア:{m_score.ToString("000")}";
             _bs.text = $"ハイスコア:{_hiscore.ToString("000")}";
             P._Power = _Power;
+            scoredata sco = new scoredata();
+            sco.score = _hiscore;
+            
+            
             if (Timer <= 0)
             {
                 _GameClear.gameObject.SetActive(true);
@@ -71,11 +84,15 @@ public class GameManager : MonoBehaviour
                 PC._move = Vector2.zero;
                 col.enabled = false;
                 _end = false;
+                scoredata sco2 = OnLoad();
+
             }
             if (_hiscore <= m_score)
             {
                 _hiscore = m_score;
-                OnSave();
+                OnSave(sco);
+
+
             }
         }
         
@@ -152,29 +169,53 @@ public class GameManager : MonoBehaviour
         m_score += _score;
         _sc.text = $"{m_score.ToString("000")}g";
     }
-    public void Reset()
+    
+    private void OnSave(scoredata sco)
     {
-        m_score = 0;
+        //scoredata sco = new scoredata();
+        //sco.score = _hiscore;
+
+        StreamWriter writer;
+
+        string json = JsonUtility.ToJson(sco);
+        //Debug.Log(json);
+
+        writer = new StreamWriter(Application.dataPath + "/savedata.json");
+
+        writer.Write(json);
+        writer.Flush();
+        writer.Close();
+        //scoredata sco2 = JsonUtility.FromJson<scoredata>(json);
+        //Debug.Log(sco2.score);
+        //var sco = new scoredata
+        //{
+        //    score = _hiscore
+        //};
+
+        //var json = JsonUtility.ToJson(sco, false);
+
+        //File.WriteAllText(_dataPath, json);
     }
-    private void OnSave()
+    private scoredata OnLoad()
     {
-        var sco = new scoredata
-        {
-            score = _hiscore
-        };
+        string datastr = "";
 
-        var json = JsonUtility.ToJson(sco, false);
+        StreamReader reader;
 
-        File.WriteAllText(_dataPath, json);
-    }
-    private void OnLoad()
-    {
-        if (!File.Exists(_dataPath)) return;
+        reader = new StreamReader(Application.dataPath + "/savedata.json");
 
-        var json = File.ReadAllText(_dataPath);
+        datastr = reader.ReadToEnd();
 
-        var sco = JsonUtility.FromJson<scoredata>(json);
+        reader.Close();
 
-        _hiscore = sco;
+        return JsonUtility.FromJson<scoredata>(datastr);
+
+        //if (!File.Exists(_dataPath)) return;
+
+        //var json = File.ReadAllText(_dataPath);
+
+        //var sco = JsonUtility.FromJson<scoredata>(json);
+
+        //_hiscore = sco;
     }
 }
