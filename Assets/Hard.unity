@@ -2719,13 +2719,13 @@ MonoBehaviour:
   - {fileID: 6863734748353852986, guid: e2846e840af7a3b4bb68c88af9c44d44, type: 3}
   - {fileID: 6863734748353852986, guid: e2846e840af7a3b4bb68c88af9c44d44, type: 3}
   - {fileID: 6863734748353852986, guid: e2846e840af7a3b4bb68c88af9c44d44, type: 3}
+  - {fileID: 6863734748353852986, guid: e2846e840af7a3b4bb68c88af9c44d44, type: 3}
   - {fileID: 3288716761500827432, guid: aae500ec95d671845a1842d903abeb5e, type: 3}
-  - {fileID: 3288716761500827432, guid: aae500ec95d671845a1842d903abeb5e, type: 3}
   - {fileID: 4831405511597139729, guid: 0bcbdf7507d29a94d8e256c3bb77f5b8, type: 3}
   - {fileID: 4831405511597139729, guid: 0bcbdf7507d29a94d8e256c3bb77f5b8, type: 3}
   - {fileID: 4831405511597139729, guid: 0bcbdf7507d29a94d8e256c3bb77f5b8, type: 3}
-  - {fileID: 9081282441608609007, guid: 01abd6dfcfee7f340a16d61fe52c7c3d, type: 3}
-  - {fileID: 9081282441608609007, guid: 01abd6dfcfee7f340a16d61fe52c7c3d, type: 3}
+  - {fileID: 9081282441608609007, guid: 5daf0a39c23c3e94da7d0b6c1ab1ddde, type: 3}
+  - {fileID: 9081282441608609007, guid: 5daf0a39c23c3e94da7d0b6c1ab1ddde, type: 3}
   - {fileID: 4026245223785262669, guid: 183a23fd880dd164bace9261e1e9d69a, type: 3}
   - {fileID: 4026245223785262669, guid: 183a23fd880dd164bace9261e1e9d69a, type: 3}
   - {fileID: 4026245223785262669, guid: 183a23fd880dd164bace9261e1e9d69a, type: 3}
@@ -2936,7 +2936,7 @@ MonoBehaviour:
   _GameOver: {fileID: 176504935}
   _GameClear: {fileID: 1754034924}
   col: {fileID: 1294990361}
-  _Power: 4
+  _Power: 0
 --- !u!1 &1319567869
 GameObject:
   m_ObjectHideFlags: 0

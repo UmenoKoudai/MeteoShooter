@@ -78,6 +78,7 @@ public class GameManager : MonoBehaviour
                 PC._move = Vector2.zero;
                 col.enabled = false;
                 _end = false;
+                OnSave(sco);
             }
             if (_hp <= 0)
             {
@@ -87,12 +88,12 @@ public class GameManager : MonoBehaviour
                 PC._move = Vector2.zero;
                 col.enabled = false;
                 _end = false;
+                OnSave(sco);
 
             }
             if (_hiscore <= m_score)
             {
                 _hiscore = m_score;
-                OnSave(sco);
             }
         }
         
