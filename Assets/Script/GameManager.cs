@@ -19,81 +19,77 @@ public class GameManager : MonoBehaviour
     //    public int score;
     //}
     [SerializeField] Image _garbage;
-    [SerializeField] Text _sc;
-    [SerializeField] Text _tt;
-    [SerializeField] Text _cs;
-    [SerializeField] Text _bs;
-    [SerializeField] GameObject _GameOver;
-    [SerializeField] GameObject _GameClear;
-    GameObject _pc;
-    GameObject _ca;
-    GameObject _p;
+    [SerializeField] Text _scoreText;
+    [SerializeField] Text _timeText;
+    [SerializeField] Text _clearScore;
+    [SerializeField] Text _bestScore;
+    [SerializeField] GameObject _gameOver;
+    [SerializeField] GameObject _gameClear;
+    GameObject _canon;
+    GameObject _createArea;
     public BoxCollider2D col;
     float _timer;
     int _hp = 100;
-    public static int m_score;
+    public static int _score;
     int _hiscore;
     public int _Power;
     bool _end = true;
+    scoredata sco2 = new scoredata();
     // Start is called before the first frame update
     public void Awake()
     {
-        m_score = 0;
-        scoredata sco2 = OnLoad();
-        _hiscore = sco2.score;
-        Debug.Log(sco2.score);
+        _score = 0;
     }
 
     void Start()
     {
-        _pc = GameObject.Find("Canon");
-        _ca = GameObject.Find("Create area");
-        _p = GameObject.Find("Canon");
+        _canon = GameObject.Find("Canon");
+        _createArea = GameObject.Find("Create area");
+        sco2 = OnLoad();
+        _hiscore = sco2.score;
     }
   
     // Update is called once per frame
     void Update()
     {
-        var PC = _pc.GetComponent<PlayerController>();
-        var CA = _ca.GetComponent<CreateAreaController>();
-        var P = _p.GetComponent<PlayerController>();
-        
+        var pC = _canon.GetComponent<PlayerController>();
+        var cA = _createArea.GetComponent<CreateAreaController>();
+
+        pC._power = _Power;
         if (_end)
         {
             _timer += Time.deltaTime;
             float Timer = 60 - _timer;
-            _tt.text = $"{Timer.ToString("f2")}";
-            _cs.text = $"スコア:{m_score.ToString("000")}";
-            _bs.text = $"ハイスコア:{_hiscore.ToString("000")}";
-            P._Power = _Power;
-            scoredata sco = new scoredata();
-            sco.score = _hiscore;
-            
-            
+            _timeText.text = $"{Timer.ToString("f2")}";
+            _clearScore.text = $"スコア:{_score.ToString("000")}";
+            _bestScore.text = $"ハイスコア:{_hiscore.ToString("000")}";
             if (Timer <= 0)
             {
-                _GameClear.gameObject.SetActive(true);
-                PC._intarval = 999999;
-                CA._interval = 999999;
-                PC._move = Vector2.zero;
+                _gameClear.gameObject.SetActive(true);
+                pC._intarval = 999999;
+                cA._interval = 999999;
+                pC._move = Vector2.zero;
                 col.enabled = false;
                 _end = false;
-                OnSave(sco);
+                //sco2 = OnLoad();
+                //_hiscore = sco2.score;
             }
             if (_hp <= 0)
             {
-                _GameOver.gameObject.SetActive(true);
-                PC._intarval = 999999;
-                CA._interval = 999999;
-                PC._move = Vector2.zero;
+                _gameOver.gameObject.SetActive(true);
+                pC._intarval = 999999;
+                cA._interval = 999999;
+                pC._move = Vector2.zero;
                 col.enabled = false;
                 _end = false;
-                OnSave(sco);
+                OnSave(sco2);
 
             }
-            if (_hiscore <= m_score)
+            if (_hiscore <= _score)
             {
-                _hiscore = m_score;
+                _hiscore = _score;
+                sco2.score = _hiscore;
+                OnSave(sco2);
             }
         }
         
@@ -157,7 +153,9 @@ public class GameManager : MonoBehaviour
         }
         if (collision.gameObject.tag == "Power")
         {
+            var audio = GetComponent<AudioSource>();
             _Power++;
+            audio.Play();
             Debug.Log("パワーアップ");
         }
     }
@@ -167,58 +165,27 @@ public class GameManager : MonoBehaviour
     }
     public void AddScore(int _score)
     {
-        m_score += _score;
-        _sc.text = $"{m_score.ToString("000")}g";
+        GameManager._score += _score;
+        this._scoreText.text = $"{GameManager._score.ToString("000")}g";
     }
     
     private void OnSave(scoredata sco)
     {
-        //scoredata sco = new scoredata();
-        //sco.score = _hiscore;
-
         StreamWriter writer;
-
         string json = JsonUtility.ToJson(sco);
-        //Debug.Log(json);
-
         Debug.Log(json);
-
-        writer = new StreamWriter(Application.dataPath + "/savedata.json");
-
+        writer = new StreamWriter(Application.persistentDataPath + "/savedata.json");
         writer.Write(json);
         writer.Flush();
         writer.Close();
-        //scoredata sco2 = JsonUtility.FromJson<scoredata>(json);
-        //Debug.Log(sco2.score);
-        //var sco = new scoredata
-        //{
-        //    score = _hiscore
-        //};
-
-        //var json = JsonUtility.ToJson(sco, false);
-
-        //File.WriteAllText(_dataPath, json);
     }
     private scoredata OnLoad()
     {
         string datastr = "";
-
         StreamReader reader;
-
-        reader = new StreamReader(Application.dataPath + "/savedata.json");
-
+        reader = new StreamReader(Application.persistentDataPath + "/savedata.json");
         datastr = reader.ReadToEnd();
-
         reader.Close();
-
         return JsonUtility.FromJson<scoredata>(datastr);
-
-        //if (!File.Exists(_dataPath)) return;
-
-        //var json = File.ReadAllText(_dataPath);
-
-        //var sco = JsonUtility.FromJson<scoredata>(json);
-
-        //_hiscore = sco;
     }
 }

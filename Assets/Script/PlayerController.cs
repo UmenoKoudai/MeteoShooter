@@ -13,7 +13,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] Transform m_crosshair;
     public Vector2 _move = default;
     int _bulletspeed = 15;
-    public int _Power;
+    public int _power;
     float _time;
     // Start is called before the first frame update
     void Start()
@@ -44,14 +44,14 @@ public class PlayerController : MonoBehaviour
         //{
         //    _rb.velocity = Vector3.zero;
         //}
-        if (_Power <= 0 && _time >= _intarval && Input.GetButton("Fire1"))
+        if (_power <= 0 && _time >= _intarval && Input.GetButton("Fire1"))
         {
             Instantiate(_bulletPrefab, _muzzle.position, transform.rotation);
             Shot.Play();
             _time = 0;
         }
         
-        else if (_Power == 1 && _time >= _intarval && Input.GetButton("Fire1"))
+        else if (_power == 1 && _time >= _intarval && Input.GetButton("Fire1"))
         {
             Instantiate(_bulletPrefab, _addmuzzle1.position, transform.rotation);
             Instantiate(_bulletPrefab, _addmuzzle2.position, transform.rotation);
@@ -61,7 +61,7 @@ public class PlayerController : MonoBehaviour
             Shot.Play();
         }
         
-        else if (_Power == 2 && _time >= _intarval && Input.GetButton("Fire1"))
+        else if (_power == 2 && _time >= _intarval && Input.GetButton("Fire1"))
         {
             Instantiate(_bulletPrefab, _addmuzzle1.position, transform.rotation);
             Instantiate(_bulletPrefab, _addmuzzle2.position, transform.rotation);
@@ -71,7 +71,7 @@ public class PlayerController : MonoBehaviour
             _intarval = .2f;
             Shot.Play();
         }
-        else if (_Power >= 3 && _time >= _intarval && Input.GetButton("Fire1"))
+        else if (_power >= 3 && _time >= _intarval && Input.GetButton("Fire1"))
         {
             Instantiate(_bulletPrefab, _addmuzzle1.position, transform.rotation);
             Instantiate(_bulletPrefab, _addmuzzle2.position, transform.rotation);
@@ -86,7 +86,7 @@ public class PlayerController : MonoBehaviour
     {
         if (collision.gameObject.tag == "Power")
         {
-            _Power += 1;
+            _power += 1;
             Debug.Log("パワーアップ");
         }
     }
