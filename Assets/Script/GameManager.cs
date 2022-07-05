@@ -47,6 +47,7 @@ public class GameManager : MonoBehaviour
         _createArea = GameObject.Find("Create area");
         sco2 = OnLoad();
         _hiscore = sco2.score;
+        
     }
   
     // Update is called once per frame
@@ -97,60 +98,60 @@ public class GameManager : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == "target1")
-        {
-            Debug.Log("ダメージ1");
-            _hp -= 1;
-            DamageGauge(0.01f);
-        }
-        else if (collision.gameObject.tag == "target2")
-        {
-            Debug.Log("ダメージ2");
-            _hp -= 2;
-            DamageGauge(0.02f);
-        }
-        else if (collision.gameObject.tag == "target5")
-        {
-            Debug.Log("ダメージ5");
-            _hp -= 5;
-            DamageGauge(0.05f);
-        }
-        else if (collision.gameObject.tag == "target6")
-        {
-            Debug.Log("ダメージ6");
-            _hp -= 6;
-            DamageGauge(0.06f);
-        }
-        else if (collision.gameObject.tag == "target7")
-        {
-            Debug.Log("ダメージ7");
-            _hp -= 7;
-            DamageGauge(0.07f);
-        }
-        else if (collision.gameObject.tag == "target10")
-        {
-            Debug.Log("ダメージ10");
-            _hp -= 10;
-            DamageGauge(0.1f);
-        }
-        else if (collision.gameObject.tag == "target12")
-        {
-            Debug.Log("ダメージ12");
-            _hp -= 12;
-            DamageGauge(0.12f);
-        }
-        else if (collision.gameObject.tag == "target50")
-        {
-            Debug.Log("ダメージ50");
-            _hp -= 50;
-            DamageGauge(0.5f);
-        }
-        else if (collision.gameObject.tag == "target70")
-        {
-            Debug.Log("ダメージ70");
-            _hp -= 70;
-            DamageGauge(0.7f);
-        }
+        //if (collision.gameObject.tag == "target1")
+        //{
+        //    Debug.Log("ダメージ1");
+        //    _hp -= 1;
+        //    DamageGauge(0.01f);
+        //}
+        //else if (collision.gameObject.tag == "target2")
+        //{
+        //    Debug.Log("ダメージ2");
+        //    _hp -= 2;
+        //    DamageGauge(0.02f);
+        //}
+        //else if (collision.gameObject.tag == "target5")
+        //{
+        //    Debug.Log("ダメージ5");
+        //    _hp -= 5;
+        //    DamageGauge(0.05f);
+        //}
+        //else if (collision.gameObject.tag == "target6")
+        //{
+        //    Debug.Log("ダメージ6");
+        //    _hp -= 6;
+        //    DamageGauge(0.06f);
+        //}
+        //else if (collision.gameObject.tag == "target7")
+        //{
+        //    Debug.Log("ダメージ7");
+        //    _hp -= 7;
+        //    DamageGauge(0.07f);
+        //}
+        //else if (collision.gameObject.tag == "target10")
+        //{
+        //    Debug.Log("ダメージ10");
+        //    _hp -= 10;
+        //    DamageGauge(0.1f);
+        //}
+        //else if (collision.gameObject.tag == "target12")
+        //{
+        //    Debug.Log("ダメージ12");
+        //    _hp -= 12;
+        //    DamageGauge(0.12f);
+        //}
+        //else if (collision.gameObject.tag == "target50")
+        //{
+        //    Debug.Log("ダメージ50");
+        //    _hp -= 50;
+        //    DamageGauge(0.5f);
+        //}
+        //else if (collision.gameObject.tag == "target70")
+        //{
+        //    Debug.Log("ダメージ70");
+        //    _hp -= 70;
+        //    DamageGauge(0.7f);
+        //}
         if (collision.gameObject.tag == "Power")
         {
             var audio = GetComponent<AudioSource>();
@@ -159,7 +160,7 @@ public class GameManager : MonoBehaviour
             Debug.Log("パワーアップ");
         }
     }
-    void DamageGauge(float dm)
+    public void DamageGauge(float dm)
     {
         _garbage.GetComponent<Image>().fillAmount += dm;
     }
@@ -174,7 +175,7 @@ public class GameManager : MonoBehaviour
         StreamWriter writer;
         string json = JsonUtility.ToJson(sco);
         Debug.Log(json);
-        writer = new StreamWriter(Application.persistentDataPath + "/savedata.json");
+        writer = new StreamWriter(Application.persistentDataPath + "/.json");
         writer.Write(json);
         writer.Flush();
         writer.Close();

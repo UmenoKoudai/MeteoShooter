@@ -18,6 +18,7 @@ TagManager:
   - target10
   - target12
   - target70
+  - GameManager
   layers:
   - Default
   - TransparentFX
