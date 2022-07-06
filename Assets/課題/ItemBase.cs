@@ -7,27 +7,22 @@ using System.IO;
 
 public abstract class ItemBase : MonoBehaviour
 {
-    ItemController _item;
-    int _hp = 10;
-
     public abstract void Activate();
     public abstract void Damage();
 
-    void Update()
-    {
-        _item = GameObject.FindObjectOfType<ItemController>();
-        _hp = _item._hp;
-        if(_hp <= 0)
-        {
-            Activate();
-            Destroy(this.gameObject);
-        }
-    }
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.tag.Equals("GameManager"))
         {
             Damage();
+            Destroy(this.gameObject);
+        }
+    }
+    public void ItemDestroy(int hp)
+    {
+        if (hp <= 0)
+        {
+            Activate();
             Destroy(this.gameObject);
         }
     }

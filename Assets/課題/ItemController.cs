@@ -25,6 +25,15 @@ public class ItemController : ItemBase
     private void Update()
     {
         _Hpgauge.text = $"{_hp}";
+        ItemDestroy(_hp);
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if(collision.gameObject.tag == "Bullet")
+        {
+            _hp--;
+        }
     }
 
     public override void Activate()
