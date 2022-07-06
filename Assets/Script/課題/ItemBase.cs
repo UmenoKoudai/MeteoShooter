@@ -8,7 +8,7 @@ using System.IO;
 public abstract class ItemBase : MonoBehaviour
 {
     ItemController _item;
-    int _hp;
+    int _hp = 10;
 
     public abstract void Activate();
     public abstract void Damage();

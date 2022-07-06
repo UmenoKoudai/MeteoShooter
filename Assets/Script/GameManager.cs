@@ -34,7 +34,7 @@ public class GameManager : MonoBehaviour
     int _hiscore;
     public int _Power;
     bool _end = true;
-    scoredata sco2 = new scoredata();
+    scoredata sco2 = new scoredata();/// <summary>scoredata型の変数を作成</summary>
     // Start is called before the first frame update
     public void Awake()
     {
@@ -45,7 +45,9 @@ public class GameManager : MonoBehaviour
     {
         _canon = GameObject.Find("Canon");
         _createArea = GameObject.Find("Create area");
+        //JSON形式で保存したハイスコアデータを呼び出しsco2変数に代入
         sco2 = OnLoad();
+        //sco2に代入した前回のハイスコアをハイスコアの変数に代入
         _hiscore = sco2.score;
         
     }
@@ -83,13 +85,15 @@ public class GameManager : MonoBehaviour
                 pC._move = Vector2.zero;
                 col.enabled = false;
                 _end = false;
-                OnSave(sco2);
+                //OnSave(sco2);
 
             }
             if (_hiscore <= _score)
             {
                 _hiscore = _score;
+                //ハイスコアが更新されたらsco2にハイスコアを代入
                 sco2.score = _hiscore;
+                //更新したハイスコアをJSON形式のフォルダに保存
                 OnSave(sco2);
             }
         }
@@ -170,6 +174,7 @@ public class GameManager : MonoBehaviour
         this._scoreText.text = $"{GameManager._score.ToString("000")}g";
     }
     
+    //ハイスコアデータをJSON形式で保存
     private void OnSave(scoredata sco)
     {
         StreamWriter writer;
@@ -180,6 +185,8 @@ public class GameManager : MonoBehaviour
         writer.Flush();
         writer.Close();
     }
+
+    //ハイスコアデータを呼び出し
     private scoredata OnLoad()
     {
         string datastr = "";

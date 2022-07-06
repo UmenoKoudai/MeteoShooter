@@ -12,6 +12,7 @@ public class ItemController : ItemBase
     [SerializeField] float _damage;
     [SerializeField] GameObject _particle;
     [SerializeField] GameObject _audio;
+    [SerializeField] Text _Hpgauge;
 
     public int HP
     {
@@ -19,6 +20,11 @@ public class ItemController : ItemBase
         {
             return _hp;
         }
+    }
+
+    private void Update()
+    {
+        _Hpgauge.text = $"{_hp}";
     }
 
     public override void Activate()
