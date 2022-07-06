@@ -173,27 +173,37 @@ public class GameManager : MonoBehaviour
         GameManager._score += _score;
         this._scoreText.text = $"{GameManager._score.ToString("000")}g";
     }
-    
-    //ハイスコアデータをJSON形式で保存
-    private void OnSave(scoredata sco)
+
+    //ハイスコアをJSON形式で保存
+    public void OnSave(scoredata sco)
     {
-        StreamWriter writer;
-        string json = JsonUtility.ToJson(sco);
-        Debug.Log(json);
-        writer = new StreamWriter(Application.persistentDataPath + "/.json");
-        writer.Write(json);
-        writer.Flush();
-        writer.Close();
+        using (StreamWriter writer = new StreamWriter(Application.persistentDataPath + "/savedata.json"))
+        {
+            string json = JsonUtility.ToJson(sco);
+            writer.Write(json);
+            writer.Flush();
+            writer.Close();
+        }
     }
 
-    //ハイスコアデータを呼び出し
-    private scoredata OnLoad()
+    //ハイスコアを呼び出し
+    public scoredata OnLoad()
     {
-        string datastr = "";
-        StreamReader reader;
-        reader = new StreamReader(Application.persistentDataPath + "/savedata.json");
-        datastr = reader.ReadToEnd();
-        reader.Close();
-        return JsonUtility.FromJson<scoredata>(datastr);
+        try
+        {
+            using (StreamReader reader = new StreamReader(Application.persistentDataPath + "/savedata.json"))
+            {
+                string datastr = "";
+                datastr = reader.ReadLine();
+                reader.Close();
+                return JsonUtility.FromJson<scoredata>(datastr);
+            }
+        }
+        catch
+        {
+            Debug.LogWarning("データがありません");
+            return null;
+        }
+
     }
 }
